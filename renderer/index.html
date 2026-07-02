@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'" />
+  <title>DriveLens</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="topbar">
+    <div class="brand">
+      <div class="logo">◔</div>
+      <div>
+        <h1>DriveLens</h1>
+        <p id="subtitle">See what's eating your disk space</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button id="btn-home" class="btn ghost hidden">⌂ Drives</button>
+      <button id="btn-rescan" class="btn ghost hidden">⟳ Rescan</button>
+      <button id="btn-folder" class="btn ghost">Scan a folder…</button>
+    </div>
+  </header>
+
+  <!-- Drive picker -->
+  <section id="view-drives" class="view">
+    <h2 class="view-title">Pick a drive to scan</h2>
+    <div id="drive-grid" class="drive-grid"></div>
+  </section>
+
+  <!-- Scan progress -->
+  <section id="view-scanning" class="view hidden">
+    <div class="scan-card">
+      <h2 id="scan-title">Scanning…</h2>
+      <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
+      <div class="scan-stats">
+        <div><span id="scan-bytes">0 B</span><label>scanned</label></div>
+        <div><span id="scan-files">0</span><label>files</label></div>
+        <div><span id="scan-dirs">0</span><label>folders</label></div>
+        <div><span id="scan-errors">0</span><label>skipped</label></div>
+      </div>
+      <div id="scan-current" class="scan-current"></div>
+      <button id="btn-cancel" class="btn danger-outline">Cancel scan</button>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section id="view-results" class="view hidden">
+    <div class="results-header">
+      <div id="breadcrumbs" class="breadcrumbs"></div>
+      <div class="tabs">
+        <button id="tab-explorer" class="tab active">Explorer</button>
+        <button id="tab-largest" class="tab">Largest files</button>
+      </div>
+    </div>
+    <div id="summary-bar" class="summary-bar"></div>
+
+    <div id="panel-explorer" class="panel-explorer">
+      <div class="treemap-wrap">
+        <canvas id="treemap"></canvas>
+        <div id="tooltip" class="tooltip hidden"></div>
+      </div>
+      <div class="list-wrap">
+        <table class="file-table">
+          <thead>
+            <tr>
+              <th class="col-check"><input type="checkbox" id="check-all" title="Select all" /></th>
+              <th>Name</th>
+              <th class="col-size">Size</th>
+              <th class="col-pct">% of folder</th>
+              <th class="col-actions"></th>
+            </tr>
+          </thead>
+          <tbody id="file-rows"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="panel-largest" class="panel-largest hidden">
+      <table class="file-table">
+        <thead>
+          <tr>
+            <th class="col-check"><input type="checkbox" id="check-all-largest" title="Select all" /></th>
+            <th>File</th>
+            <th class="col-size">Size</th>
+            <th class="col-date">Last modified</th>
+            <th class="col-actions"></th>
+          </tr>
+        </thead>
+        <tbody id="largest-rows"></tbody>
+      </table>
+    </div>
+
+    <div id="selection-bar" class="selection-bar hidden">
+      <span id="selection-info"></span>
+      <button id="btn-clear-sel" class="btn ghost small">Clear</button>
+      <button id="btn-delete-sel" class="btn danger">🗑 Move to Recycle Bin</button>
+    </div>
+  </section>
+
+  <!-- Confirm modal -->
+  <div id="modal-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <h3 id="modal-title"></h3>
+      <div id="modal-body"></div>
+      <div class="modal-actions">
+        <button id="modal-cancel" class="btn ghost">Cancel</button>
+        <button id="modal-confirm" class="btn danger">Move to Recycle Bin</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
