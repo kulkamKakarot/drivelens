@@ -1,5 +1,6 @@
 node_modules/
 dist/
+marketing/
 *.log
 .claude/
 Thumbs.db
