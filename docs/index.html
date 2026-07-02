@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DriveLens — Free Open-Source Disk Space Analyzer for Windows</title>
+  <meta name="description" content="DriveLens scans your Windows drives and shows what's taking up space in an interactive treemap. Find the largest files and folders, clean up safely via the Recycle Bin. Free, open source, no telemetry." />
+  <meta name="keywords" content="disk space analyzer, windows, free, open source, treemap, disk usage, WinDirStat alternative, TreeSize alternative, disk cleanup" />
+  <link rel="canonical" href="https://kulkamkakarot.github.io/drivelens/" />
+  <!-- Open Graph / social preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="DriveLens — See what's eating your disk space" />
+  <meta property="og:description" content="Free, open-source disk space analyzer for Windows. Interactive treemap, largest-files finder, safe Recycle-Bin cleanup. No telemetry." />
+  <meta property="og:image" content="https://kulkamkakarot.github.io/drivelens/screenshots/Drivescan_Results.png" />
+  <meta property="og:url" content="https://kulkamkakarot.github.io/drivelens/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <style>
+    :root {
+      --bg: #0f1115;
+      --bg-raised: #171a21;
+      --border: #262b36;
+      --text: #e8eaf0;
+      --text-dim: #9aa3b2;
+      --accent: #4f8ef7;
+      --accent2: #7c5cf0;
+      --ok: #3fb96f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* Hero */
+    .hero { text-align: center; padding: 72px 0 48px; }
+    .logo {
+      width: 72px; height: 72px; margin: 0 auto 24px;
+      display: grid; place-items: center;
+      font-size: 40px; color: white;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border-radius: 20px;
+    }
+    h1 { font-size: 44px; font-weight: 700; letter-spacing: -1px; }
+    .tagline { font-size: 20px; color: var(--text-dim); margin: 12px auto 32px; max-width: 640px; }
+    .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white;
+      box-shadow: 0 8px 24px rgba(79, 142, 247, 0.35);
+    }
+    .btn-ghost { border: 1px solid var(--border); color: var(--text); background: var(--bg-raised); }
+    .hero-note { font-size: 13px; color: var(--text-dim); }
+    .hero-note code { background: var(--bg-raised); border: 1px solid var(--border); padding: 2px 8px; border-radius: 6px; font-size: 12px; }
+
+    .hero-shot { margin: 48px auto 0; max-width: 1000px; padding: 0 24px; }
+    .hero-shot img {
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.55);
+    }
+
+    /* Sections */
+    section { padding: 64px 0; }
+    h2 { font-size: 30px; text-align: center; margin-bottom: 10px; letter-spacing: -0.5px; }
+    .section-sub { text-align: center; color: var(--text-dim); margin-bottom: 44px; }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+    }
+    .feature {
+      background: var(--bg-raised);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 26px;
+    }
+    .feature .icon { font-size: 26px; margin-bottom: 12px; }
+    .feature h3 { font-size: 16px; margin-bottom: 8px; }
+    .feature p { font-size: 14px; color: var(--text-dim); }
+
+    .shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; }
+    .shots figure { background: var(--bg-raised); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .shots img { width: 100%; display: block; }
+    .shots figcaption { padding: 12px 16px; font-size: 13px; color: var(--text-dim); }
+
+    .trust { max-width: 720px; margin: 0 auto; }
+    .trust li { margin-bottom: 14px; color: var(--text-dim); list-style: none; padding-left: 32px; position: relative; }
+    .trust li::before { content: "✓"; color: var(--ok); position: absolute; left: 0; font-weight: 700; }
+    .trust li b { color: var(--text); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 0;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    footer a { margin: 0 10px; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 32px; }
+      .tagline { font-size: 16px; }
+      .hero { padding: 48px 0 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero container">
+    <div class="logo">◔</div>
+    <h1>DriveLens</h1>
+    <p class="tagline">See exactly what's eating your disk space — and clean it up safely. Free, open-source disk analyzer for Windows.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://github.com/kulkamKakarot/drivelens/releases/latest">⬇ Download for Windows</a>
+      <a class="btn btn-ghost" href="https://github.com/kulkamKakarot/drivelens">★ Star on GitHub</a>
+    </div>
+    <p class="hero-note">Free & MIT-licensed · or install via <code>winget install drivelens</code> (pending approval)</p>
+  </div>
+
+  <div class="hero-shot">
+    <img src="screenshots/Drivescan_Results.png" alt="DriveLens treemap showing what takes space on a C: drive" />
+  </div>
+
+  <section class="container">
+    <h2>Your drive is full. Now you'll know why.</h2>
+    <p class="section-sub">Windows tells you <i>that</i> you're out of space — DriveLens shows you <i>why</i>, drawn to scale, in seconds.</p>
+    <div class="features">
+      <div class="feature">
+        <div class="icon">🗺️</div>
+        <h3>Interactive treemap</h3>
+        <p>Every folder and file drawn proportional to its size, color-coded by type. Click to drill in, hover for details. Huge files are impossible to miss.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">⚡</div>
+        <h3>Fast, responsive scanning</h3>
+        <p>Scans run in a background thread with live progress — even drives with millions of files stay smooth. Files under 1&nbsp;MB are grouped so nothing bogs down.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🏆</div>
+        <h3>Largest files finder</h3>
+        <p>The top 100 biggest files on your drive with last-modified dates — spot the forgotten 8&nbsp;GB download from two years ago instantly.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🗑️</div>
+        <h3>Safe cleanup</h3>
+        <p>Multi-select and delete with full confirmation — everything goes to the <b>Recycle Bin</b>, never permanently removed. System paths get an extra warning.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔒</div>
+        <h3>Private by design</h3>
+        <p>Zero network access. No telemetry, no accounts, no ads. Your file names never leave your machine — and you can audit the code yourself.</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🆓</div>
+        <h3>Free & open source</h3>
+        <p>MIT-licensed on GitHub. Build it from source in two commands, file issues, or contribute features and translations.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <h2>A closer look</h2>
+    <p class="section-sub">From drive picker to freed-up gigabytes in a few clicks.</p>
+    <div class="shots">
+      <figure>
+        <img src="screenshots/DriveLens_Dashboard.png" alt="Drive picker showing all drives with usage bars" loading="lazy" />
+        <figcaption>All your drives at a glance — usage bars turn orange, then red as they fill.</figcaption>
+      </figure>
+      <figure>
+        <img src="screenshots/DriveLens_Scan.png" alt="Live scan progress" loading="lazy" />
+        <figcaption>Live scan progress: gigabytes scanned, file counts, current folder.</figcaption>
+      </figure>
+      <figure>
+        <img src="screenshots/Drivelens_LargestFilesView.png" alt="Largest files view with dates" loading="lazy" />
+        <figcaption>Top 100 largest files with last-modified dates — the fastest wins live here.</figcaption>
+      </figure>
+      <figure>
+        <img src="screenshots/DriveLens_ChooseFolder.png" alt="Folder scan option" loading="lazy" />
+        <figcaption>Scan a single folder instead of a whole drive when you know where to look.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="container">
+    <h2>Built to be trusted</h2>
+    <p class="section-sub">Deleting files needs care. DriveLens is engineered around safety.</p>
+    <ul class="trust">
+      <li><b>Recycle Bin only</b> — the app has no code path for permanent deletion. Every removal is recoverable.</li>
+      <li><b>Confirmation with full detail</b> — you see the exact paths and total size before anything moves.</li>
+      <li><b>System-path warnings</b> — anything inside Windows or Program Files triggers an extra, explicit warning.</li>
+      <li><b>Sandboxed &amp; validated</b> — the UI runs in Chromium's sandbox; every file path is validated before the backend touches it.</li>
+      <li><b>Open code</b> — ~1,500 lines of readable JavaScript, no obfuscation, auditable by anyone.</li>
+    </ul>
+  </section>
+
+  <section class="container" style="text-align:center;">
+    <h2>Reclaim your disk today</h2>
+    <p class="section-sub">One user freed 440 GB in their first session. What's hiding on your drive?</p>
+    <a class="btn btn-primary" href="https://github.com/kulkamKakarot/drivelens/releases/latest">⬇ Download DriveLens — Free</a>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>
+        <a href="https://github.com/kulkamKakarot/drivelens">GitHub</a> ·
+        <a href="https://github.com/kulkamKakarot/drivelens/issues">Report an issue</a> ·
+        <a href="https://github.com/kulkamKakarot/drivelens/blob/main/LICENSE">MIT License</a>
+      </p>
+      <p style="margin-top:8px;">DriveLens is free, open-source software. Not affiliated with Microsoft.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
