@@ -1,0 +1,37 @@
+{
+  "name": "drivelens",
+  "version": "1.0.0",
+  "description": "Scan your drives, see what takes space, and clean up safely.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win"
+  },
+  "author": "Aditya",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^43.0.0",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.aditya.drivelens",
+    "productName": "DriveLens",
+    "files": [
+      "main.js",
+      "preload.js",
+      "scanner-worker.js",
+      "renderer/**",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
