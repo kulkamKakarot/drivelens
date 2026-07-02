@@ -4,6 +4,8 @@
 
 Built with Electron. Free and open source under the MIT license.
 
+![DriveLens treemap view of a scanned C: drive](docs/screenshots/Drivescan_Results.png)
+
 ## Why
 
 Windows drives fill up silently — a red usage bar in Explorer tells you *that* you're out of space, but not *why*. DriveLens shows you the why in seconds: which folders, which files, sorted biggest-first, drawn to scale.
@@ -17,6 +19,16 @@ Windows drives fill up silently — a red usage bar in Explorer tells you *that*
 - 🏆 **Largest files tab** — the top 100 biggest files on the drive, with last-modified dates so you can spot forgotten giants
 - 🗑️ **Safe cleanup** — multi-select with checkboxes, confirmation dialog showing exactly what will be removed, extra warning for Windows system paths, and deletion **only to the Recycle Bin** (always recoverable)
 - 📁 **Folder mode** — scan a single folder instead of a whole drive
+
+## Screenshots
+
+| Drive picker | Live scan progress |
+|---|---|
+| ![All drives with usage bars](docs/screenshots/DriveLens_Dashboard.png) | ![Scanning with live progress](docs/screenshots/DriveLens_Scan.png) |
+
+| Largest files | Scan any folder |
+|---|---|
+| ![Top 100 largest files with dates](docs/screenshots/Drivelens_LargestFilesView.png) | ![Folder picker](docs/screenshots/DriveLens_ChooseFolder.png) |
 
 ## Install
 
